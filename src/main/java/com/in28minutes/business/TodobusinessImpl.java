@@ -5,26 +5,24 @@ import java.util.List;
 
 import com.in28minutes.data.api.TodoService;
 
-public class TodobusinessImpl {
-	private TodoService todoservice;
+//TodoBusinessImpl is Service under test
+//TodoService is a dependency (say implemented by other team)
 
+public class TodoBusinessImpl {
+	private TodoService todoService;
 
-	public TodobusinessImpl(TodoService todoservice) {
-		super();
-		this.todoservice = todoservice;
-	}
-	
-	public List<String> retrivetodosRelatedtoString (String user){
-		
+	TodoBusinessImpl(TodoService todoService) {
+		this.todoService = todoService;
+	}//TodoBusinessImpl
+
+	public List<String> retrieveTodosRelatedToSpring(String user) {
 		List<String> filteredTodos = new ArrayList<String>();
-		List<String> todos = todoservice.retriveTodos(user); 
-		
-		for(String todo:todos) {
+		List<String> allTodos = todoService.retrieveTodos(user);
+		for (String todo : allTodos) {
 			if (todo.contains("Spring")) {
 				filteredTodos.add(todo);
 			}//if
-		}//for 
+		}//for
 		return filteredTodos;
-	}
-
-}
+	}//retrieveTodosRelatedToSpring
+}//TodoBusinessImpl
